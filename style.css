@@ -1,0 +1,238 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+:root{
+    --Dark-Grayish-Blue: hsl(234, 11%, 52%);
+
+    --Check-Background: linear-gradient( hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    --Bright-Blue: hsl(220, 98%, 61%);
+}
+body{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--bg-color);
+
+    
+    --box-shadow: 0px 5px 60px rgba(72, 75, 106, 0.25);
+
+    --bg-color: hsl(0, 0%, 98%);
+    --h1-color: hsl(0, 0%, 98%);
+    --hover-color: hsl(235, 21%, 11%);
+    --circle-color: hsl(236, 9%, 61%);
+    --border-color: hsl(236, 33%, 92%);
+    --input-color: hsl(235, 19%, 35%);
+    --placeholder-color: hsl(236, 9%, 61%);
+    --to-do-color: hsl(235, 19%, 35%);
+    --completed-to-do-color: hsl(233, 11%, 84%);
+    --actions-color: hsl(235, 19%, 35%);
+}
+body.dark{
+    --box-shadow: 0px 5px 50px hsl(235, 21%, 5%);
+
+    --bg-color: hsl(235, 21%, 11%);
+    --hover-color: hsl(236, 33%, 92%);
+    --circle-color: hsl(237, 14%, 26%);
+    --border-color: hsl(237, 14%, 26%);
+    --input-color: hsl(234, 39%, 85%);
+    --placeholder-color: hsl(234, 11%, 52%);
+    --to-do-color: hsl(234, 39%, 85%);
+    --completed-to-do-color: hsl(233, 14%, 35%);
+    --actions-color: hsl(234, 11%, 52%);
+}
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 270px;
+    background: url('Images/bg-desktop-light.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+body.dark .background{
+    background: url('Images/bg-desktop-dark.jpg');
+}
+
+.wrapper{
+    width: min(90%, 400px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 60px;
+}
+.wrapper header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+.wrapper header h1{
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--h1-color);
+}
+.wrapper header button{
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.wrapper header button img{
+    width: 25px;
+}
+.wrapper header button img:nth-child(2),
+.wrapper header button.active img:nth-child(1){
+    display: none;
+}
+.wrapper header button.active img:nth-child(2){
+    display: block;
+}
+
+.wrapper .input-area{
+    position: relative;
+    height: 50px;
+    background: var(--bg-color);
+    border-radius: 3px;
+}
+.wrapper .input-area input{
+    width: 100%;
+    height: 100%;
+    padding-left: 50px;
+    font-size: 12px;
+
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--input-color);
+    caret-color: var(--Bright-Blue);
+}
+.wrapper .input-area input::placeholder{
+    color: var(--placeholder-color);
+}
+.wrapper .input-area .circle{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--circle-color);
+    cursor: pointer;
+}
+
+.to-do-area{
+    border-radius: 3px;
+    background: var(--bg-color);
+    box-shadow: var(--box-shadow);
+
+    display: flex;
+    flex-direction: column;
+}
+.to-do-area .bar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 45px;
+    font-size: 10px;
+    color: var(--Dark-Grayish-Blue);
+}
+.to-do-area .bar span{
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.to-do-area .bar .actions{
+    display: flex;
+    gap: 10px;
+    color: var(--actions-color);
+}
+.to-do-area .bar .actions span:hover{
+    color: var(--hover-color);
+}
+.to-do-area .bar .actions span.current{
+    color: var(--Bright-Blue);
+    font-weight: 700;
+}
+.to-do-area .bar .clear:hover{
+    color: var(--hover-color);
+}
+.to-dos li{
+    position: relative;
+    height: 45px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+.to-dos li .check-box{
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--circle-color);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: transparent;
+
+    cursor: pointer;
+}
+.to-dos li .check-box img{
+    display: none;
+}
+.to-dos li.done .check-box{
+    background: var(--Check-Background);
+    border: none;
+}
+.to-dos li.done .check-box img{
+    display: block;
+}
+
+.to-dos li span{
+    font-size: 12px;
+    color: var(--to-do-color);
+}
+.to-dos li.done span{
+    text-decoration: line-through;
+    color: var(--completed-to-do-color);
+}
+.to-dos li .cancel-btn{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.to-dos li .cancel-btn img{
+    width: 15px;
+    cursor: pointer;
+    display: none;
+}
+.to-dos li:hover .cancel-btn img{
+    display: block;
+}
+
+
+
+@media screen and (max-width: 600px){
+    .background{
+        background: url('Images/bg-mobile-light.jpg') no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    body.dark .background{
+        background: url('Images/bg-mobile-dark.jpg') no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .to-dos .bar{
+        font-size: 2.5vw;
+    }
+}
